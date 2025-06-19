@@ -1,25 +1,56 @@
-# AnshAPI - Bing Web & Image Search API
+# 🌐 AnshAPI - Bing Search API (Cloudflare Workers)
 
-This is a simple and powerful API that scrapes **Bing** search results for both **web pages** and **images**. Built for developers, hobbyists, and learners.
-
----
-
-## 🔧 How to Use
-
-**Endpoint:**  
-`/api/search?search=QUERY&state=web|image`
-
-### Parameters:
-- `search` — the query to search on Bing
-- `state` — either `web` or `image`
-
-### Examples:
-- 🔗 Web: `/api/search?search=elon+musk&state=web`
-- 🖼 Image: `/api/search?search=dog&state=image`
+A simple but powerful public API that provides **web** and **image** search results scraped from **Bing** — deployed on **Cloudflare Workers**.
+Perfect for experiments, bots, or educational tools.
 
 ---
 
-## 🖥 Example Response (Web)
+## 🚀 Live Usage
+
+Once deployed, your Worker will expose two endpoints:
+
+### 1. API Endpoint
+
+```
+https://<your-worker-subdomain>.workers.dev/api?search=QUERY&state=web|image
+```
+
+### 2. API Docs (Homepage)
+
+```
+https://<your-worker-subdomain>.workers.dev/
+```
+
+---
+
+## 🔧 API Parameters
+
+| Parameter | Type   | Description                          |
+| --------- | ------ | ------------------------------------ |
+| `search`  | string | The search query (e.g., `elon musk`) |
+| `state`   | string | Either `web` or `image`              |
+
+---
+
+## 🧪 Example Requests
+
+### 🔗 Web Search:
+
+```
+https://<your-worker>.workers.dev/api?search=tesla&state=web
+```
+
+### 🖼 Image Search:
+
+```
+https://<your-worker>.workers.dev/api?search=dogs&state=image
+```
+
+---
+
+## 📆 JSON Response Format
+
+### Web Example:
 
 ```json
 {
@@ -30,8 +61,8 @@ This is a simple and powerful API that scrapes **Bing** search results for both 
     "results": [
       {
         "url": "https://example.com",
-        "title": "Elon Musk - Example",
-        "snippet": "Elon Musk is a tech entrepreneur..."
+        "title": "Elon Musk Biography",
+        "snippet": "Elon Musk is a technology entrepreneur..."
       }
     ],
     "count": 1
@@ -42,27 +73,49 @@ This is a simple and powerful API that scrapes **Bing** search results for both 
 
 ---
 
-## 📦 Deployment
+## ⚙️ Deploy to Cloudflare Workers
 
-This project is fully deployable on [Vercel](https://vercel.com/):
+### 🛠 1. Install Wrangler
 
-### Project structure:
+```bash
+npm install -g wrangler
 ```
-/api/search.js     ← Main API logic
-/index.html        ← Documentation UI
-/vercel.json       ← Rewrite config
-/README.md         ← This file
+
+### 🛠 2. Init a Worker
+
+```bash
+wrangler init bingsearchapi
+cd bingsearchapi
+```
+
+### 🛠 3. Replace Code
+
+Replace `src/index.js` with the API logic provided in `index.js`.
+
+### 🛠 4. Update `wrangler.toml`
+
+```toml
+name = "bingsearchapi"
+main = "src/index.js"
+compatibility_date = "2024-06-19"
+```
+
+### 🛠 5. Publish 🚀
+
+```bash
+wrangler publish
 ```
 
 ---
 
-## 👤 Developer
+## 👤 Developer Info
 
-**Made by [@anshapi](https://t.me/anshapi) on Telegram**  
-Free to use • Open-source • Credit appreciated ✨
+* 👨‍💻 Made by [@anshapi](https://t.me/anshapi) on Telegram
+* 🌍 Free and open to use — credit appreciated
+* ⚠ For educational and non-commercial use
 
 ---
 
 ## 💬 Support
 
-If you like this API or have suggestions, DM me on Telegram 👉 [@anshapi](https://t.me/anshapi)
+Have feedback or want to say thanks? DM [@anshapi](https://t.me/anshapi) ✨
